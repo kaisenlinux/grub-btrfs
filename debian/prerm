@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+case "$1" in
+	remove|autoremove|purge)
+	if command -v update-grub &> /dev/null
+	then
+		update-grub || true
+	fi
+	;;
+esac

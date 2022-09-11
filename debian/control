@@ -1,0 +1,19 @@
+Source: grub-btrfs
+Section: admin
+Priority: optional
+Maintainer: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 4.6.1
+Homepage: https://github.com/Antynea/grub-btrfs
+Vcs-Browser: https://gitlab.com/kaisenlinux/packages/grub-btrfs
+Vcs-Git: https://gitlab.com/kaisenlinux/packages/grub-btrfs.git
+
+Package: grub-btrfs
+Architecture: all
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ btrfs-progs,
+ gawk,
+Description: Include btrfs snapshots in the GRUB menu
