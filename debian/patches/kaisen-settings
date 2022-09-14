@@ -2,7 +2,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
 
 --- grub-btrfs-4.11.orig/41_snapshots-btrfs
 +++ grub-btrfs-4.11/41_snapshots-btrfs
-@@ -55,17 +55,17 @@ print_error()
+@@ -55,14 +55,14 @@ print_error()
  {
      local err_msg="$*"
      local bug_report="If you think an error has occurred , please file a bug report at \" https://github.com/Antynea/grub-btrfs \""
@@ -18,11 +18,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
 +distro=BTRFS
  submenuname=${GRUB_BTRFS_SUBMENUNAME:-"${distro:-Linux} snapshots"}
  ## Limit snapshots to show in the Grub menu (default=50)
--limit_snap_show="${GRUB_BTRFS_LIMIT:-50}"
-+limit_snap_show="${GRUB_BTRFS_LIMIT:-100}"
- ## How to sort snapshots list
- btrfs_subvolume_sort="--sort=${GRUB_BTRFS_SUBVOLUME_SORT:-"-rootid"}"
- ## Customize GRUB directory, where "grub.cfg" file is saved
+ limit_snap_show="${GRUB_BTRFS_LIMIT:-50}"
 @@ -98,7 +98,7 @@ boot_hs=$(${grub_probe} --device ${boot_
  boot_fs=$(${grub_probe} --device ${boot_device} --target="fs" 2>/dev/null) # Type filesystem of boot device
  
@@ -32,3 +28,12 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  ## Mount point location
  grub_btrfs_mount_point=$(mktemp -dt grub-btrfs.XXXXXXXXXX)
  ## Class for theme
+@@ -545,7 +545,7 @@ rm -f "$grub_directory/grub-btrfs.new"
+ > "$grub_directory/grub-btrfs.new" # Create a "grub-btrfs.new" file in "grub_directory"
+ # Create mount point then mounting
+ [[ ! -d $grub_btrfs_mount_point ]] && mkdir -p "$grub_btrfs_mount_point"
+-mount -o ro,subvolid=5 /dev/disk/by-uuid/"$root_uuid" "$grub_btrfs_mount_point/"
++mount -o ro,subvolid=5 /dev/disk/by-uuid/"$root_uuid" "$grub_btrfs_mount_point/" > /dev/null
+ trap "unmount_grub_btrfs_mount_point" EXIT # unmounting mount point on EXIT signal
+ count_warning_menuentries=0 # Count menuentries
+ count_limit_snap=0 # Count snapshots

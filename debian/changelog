@@ -1,3 +1,11 @@
+grub-btrfs (4.11-2kaisen) kaisen-packages; urgency=medium
+
+  * Add > /dev/null at the end of the line mount -o for not displaying systemd warnings
+    (fix bad generate GRUB entries)
+  * Refresh quilt patch
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Wed, 14 Sep 2022 08:39:41 +0100
+
 grub-btrfs (4.11-1kaisen) kaisen-packages; urgency=medium
 
   * Initial release
