@@ -2,7 +2,15 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
 
 --- grub-btrfs-4.11.orig/41_snapshots-btrfs
 +++ grub-btrfs-4.11/41_snapshots-btrfs
-@@ -62,10 +62,10 @@ print_error()
+@@ -55,17 +55,17 @@ print_error()
+ {
+     local err_msg="$*"
+     local bug_report="If you think an error has occurred , please file a bug report at \" https://github.com/Antynea/grub-btrfs \""
+-    printf "%s\n" "${err_msg}" "${bug_report}" >&2 ;
++    printf "%s\n" "${err_msg}" >&2 ;
+     exit 0
+ }
+ 
  printf "Detecting snapshots ...\n" >&2 ;
  
  ## Submenu name
