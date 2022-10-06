@@ -2,6 +2,11 @@
 
 set -e
 
+if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
+	echo "Running in chroot, ignoring request."
+	exit 0
+fi
+
 if [[ "$1" = "configure" ]]; then
 	if command -v update-grub &> /dev/null
 	then
