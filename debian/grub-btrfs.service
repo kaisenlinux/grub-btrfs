@@ -1,0 +1,11 @@
+[Unit]
+Description=Regenerate the GRUB config to add BTRFS snapshots
+
+[Service]
+Type=oneshot
+Environment="PATH=/sbin:/bin:/usr/sbin:/usr/bin"
+EnvironmentFile=/etc/default/grub-btrfs/config
+ExecStart=update-grub
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+case "$1" in
+upgrade|full-upgrade|dist-upgrade)
+    if dpkg --compare-versions "$2" lt "4.11-6kaisen"; then
+        rm -f "/lib/systemd/system/grub-btrfs.path"
+	rm -f "/lib/systemd/system/grub-btrfs.service"
+	rm -rf "/etc/systemd/system/\\x2esnapshots.mount.wants"
+    fi
+esac

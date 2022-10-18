@@ -1,0 +1,4 @@
+etc
+etc/grub.d
+etc/default
+etc/default/grub-btrfs

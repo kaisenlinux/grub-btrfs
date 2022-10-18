@@ -32,3 +32,70 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  ## Mount point location
  grub_btrfs_mount_point=$(mktemp -dt grub-btrfs.XXXXXXXXXX)
  ## Class for theme
+--- grub-btrfs-4.11.orig/config
++++ grub-btrfs-4.11/config
+@@ -2,7 +2,7 @@
+ 
+ # Disable grub-btrfs.
+ # Default: "false"
+-#GRUB_BTRFS_DISABLE="true"
++GRUB_BTRFS_DISABLE="false"
+ 
+ # Name appearing in the Grub menu.
+ # Default: "Use distribution information from /etc/os-release."
+@@ -15,7 +15,7 @@
+ 
+ # Limit the number of snapshots populated in the GRUB menu.
+ # Default: "50"
+-#GRUB_BTRFS_LIMIT="50"
++GRUB_BTRFS_LIMIT="100"
+ 
+ # Sort the found subvolumes by "ogeneration" or "generation" or "path" or "rootid".
+ # # See Sorting section to https://btrfs.wiki.kernel.org/index.php/Manpage/btrfs-subvolume#SUBCOMMAND
+@@ -25,11 +25,11 @@
+ 
+ # Show snapshots found during run "grub-mkconfig"
+ # Default: "true"
+-#GRUB_BTRFS_SHOW_SNAPSHOTS_FOUND="false"
++GRUB_BTRFS_SHOW_SNAPSHOTS_FOUND="true"
+ 
+ # Show Total of snapshots found during run "grub-mkconfig"
+ # Default: "true"
+-#GRUB_BTRFS_SHOW_TOTAL_SNAPSHOTS_FOUND="true"
++GRUB_BTRFS_SHOW_TOTAL_SNAPSHOTS_FOUND="true"
+ 
+ # By default, "grub-btrfs" automatically detects most existing kernels.
+ # If you have one or more custom kernels, you can add them here.
+@@ -90,12 +90,12 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
+ # Might be grub2 on some systems.
+ # For example, on Fedora with EFI : "/boot/efi/EFI/fedora"
+ # Default: "/boot/grub"
+-#GRUB_BTRFS_GRUB_DIRNAME="/boot/grub2"
++GRUB_BTRFS_GRUB_DIRNAME="/boot/grub"
+ 
+ # Location of kernels/initramfs/microcode.
+ # Use by "grub-btrfs" to detect the boot partition and the location of kernels/initrafms/microcodes.
+ # Default: "/boot"
+-#GRUB_BTRFS_BOOT_DIRNAME="/boot"
++GRUB_BTRFS_BOOT_DIRNAME="/boot"
+ 
+ # Name/path of grub-mkconfig command, use by "grub-btrfs.service"
+ # Might be 'grub2-mkconfig' on some systems (Fedora ...)
+@@ -104,7 +104,7 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
+ # For example, on Fedora : "/sbin/grub2-mkconfig"
+ # You can use only name or full path.
+ # Default: grub-mkconfig
+-#GRUB_BTRFS_MKCONFIG=/usr/bin/grub2-mkconfig
++GRUB_BTRFS_MKCONFIG=/usr/sbin/update-grub
+ 
+ # Name of grub-script-check command, use by "grub-btrfs"
+ # Might be 'grub2-script-check' on some systems (Fedora ...)
+@@ -115,7 +115,7 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
+ # Path of grub-mkconfig_lib file, use by "grub-btrfs"
+ # Might be '/usr/share/grub2/grub-mkconfig_lib' on some systems (Opensuse ...)
+ # Default: /usr/share/grub/grub-mkconfig_lib
+-#GRUB_BTRFS_MKCONFIG_LIB=/usr/share/grub2/grub-mkconfig_lib
++GRUB_BTRFS_MKCONFIG_LIB=/usr/share/grub/grub-mkconfig_lib
+ 
+ # Password protection management for submenu,snapshots
+ # Refer to the Grub documentation https://www.gnu.org/software/grub/manual/grub/grub.html#Authentication-and-authorisation

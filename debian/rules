@@ -2,3 +2,7 @@
 
 %:
 	dh $@
+
+override_dh_auto_install:
+	install -p -m 0755 $(CURDIR)/41_snapshots-btrfs $(CURDIR)/debian/grub-btrfs/etc/grub.d
+	install -p -m 0644 $(CURDIR)/config $(CURDIR)/debian/grub-btrfs/etc/default/grub-btrfs

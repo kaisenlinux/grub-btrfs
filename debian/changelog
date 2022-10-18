@@ -1,3 +1,16 @@
+grub-btrfs (4.11-6kaisen) kaisen-packages; urgency=medium
+
+  * Add custom .path and .service systemd unit file to enable the
+    monitor for the /run/timeshift folder
+  * Add a default conf for the /etc/default/grub-btrfs/config file
+    with the kaisen-settings quilt patch
+  * Remove the postinst script (the update-grub will be executed by the systemd monitor)
+  * Rename the prerm script in postrm
+  * The systemd units file are now installed from debian/
+  * Add the preinst script to remove obsoletes conffiles
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Tue, 18 Oct 2022 12:57:04 +0100
+
 grub-btrfs (4.11-5kaisen) kaisen-packages; urgency=medium
 
   * Add an if statement to check if the package is installed in a chroot
