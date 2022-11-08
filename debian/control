@@ -12,7 +12,6 @@ Vcs-Git: https://gitlab.com/kaisenlinux/packages/grub-btrfs.git
 Package: grub-btrfs
 Architecture: all
 Depends:
- ${shlibs:Depends},
  ${misc:Depends},
  btrfs-progs,
  gawk,
