@@ -42,22 +42,41 @@ grub_btrfs_config="${sysconfdir}/default/grub-btrfs/config"
 [[ -f "$grub_btrfs_config" ]] && . "$grub_btrfs_config"
 [[ -f "${sysconfdir}/default/grub" ]] && . "${sysconfdir}/default/grub"
 
-## Exit the script, if:
-[[ "${GRUB_BTRFS_DISABLE,,}" == "true" ]] && exit 0 # Disable Grub-btrfs is set to true (default=false)
-if ! type btrfs >/dev/null 2>&1; then exit 0; fi # btrfs-progs isn't installed
-[[ -f "${GRUB_BTRFS_MKCONFIG_LIB:-/usr/share/grub/grub-mkconfig_lib}" ]] && . "${GRUB_BTRFS_MKCONFIG_LIB:-/usr/share/grub/grub-mkconfig_lib}" || exit 0 # grub-mkconfig_lib couldn't be found
-# Root filesystem isn't btrfs
-root_fs=$(${grub_probe} --target="fs" / 2>/dev/null)
-[[ "$root_fs" != "btrfs" ]] && exit 0
-
 ## Error Handling
 print_error()
 {
     local err_msg="$*"
-    local bug_report="If you think an error has occurred , please file a bug report at \" https://github.com/Antynea/grub-btrfs \""
+    local bug_report="If you think an error has occurred, please file a bug report at \"https://github.com/Antynea/grub-btrfs\""
     printf "%s\n" "${err_msg}" "${bug_report}" >&2 ;
     exit 0
 }
+
+# parse arguments
+while getopts :V-: opt; do
+    case "$opt" in
+        -)
+            case "${OPTARG}" in
+                version)
+                    printf "Version %s\n" "${GRUB_BTRFS_VERSION}" >&2 ;
+                    exit 0
+                    ;;
+            esac;;
+        V)
+            printf "Version %s\n" "${GRUB_BTRFS_VERSION}" >&2 ;
+            exit 0
+            ;;
+        *)
+            printf "Unknown flag, exiting...\n"
+            exit 0
+            ;;
+    esac
+done
+
+## Exit the script, if:
+[[ "${GRUB_BTRFS_DISABLE,,}" == "true" ]] && print_error "GRUB_BTRFS_DISABLE is set to true (default=false)"
+if ! type btrfs >/dev/null 2>&1; then print_error "btrfs-progs isn't installed"; fi
+[[ -f "${GRUB_BTRFS_MKCONFIG_LIB:-/usr/share/grub/grub-mkconfig_lib}" ]] && . "${GRUB_BTRFS_MKCONFIG_LIB:-/usr/share/grub/grub-mkconfig_lib}" || print_error "grub-mkconfig_lib couldn't be found"
+[[ "$(${grub_probe} --target="fs" / 2>/dev/null)" != "btrfs" ]] && print_error "Root filesystem isn't btrfs"
 
 printf "Detecting snapshots ...\n" >&2 ;
 
@@ -158,7 +177,7 @@ fi
 ## Create entry
 entry()
 {
-echo "$@" >> "$grub_directory/grub-btrfs.new"
+    echo "$@" >> "$grub_directory/grub-btrfs.new"
 }
 
 ## menu entries
@@ -455,6 +474,7 @@ title_format()
             if [[ "${#var}" -lt "${#title_column[${GRUB_BTRFS_TITLE_FORMAT[$key],,}]}" ]]; then # Add extra spaces if length of $var is smaller than the length of column, needed for pretty formatting
                 printf -v var "%-$(((${#title_column[${GRUB_BTRFS_TITLE_FORMAT[$key],,}]}-${#var})+${#var}))s" "${var}";
             fi
+		    var="$(sed  "s/'//g"  <(echo "${var}"))"
             title_menu+="${var}|"
             title_submenu+=" $(trim "${var}") |"
     done
@@ -574,5 +594,9 @@ submenu '${submenuname}' ${protection_authorized_users}${unrestricted_access_sub
 }
 EOF
 else
-    print_error "Syntax errors are detected in generated grub-btrfs.cfg file."
+    print_error "Syntax errors were detected in generated ${grub_directory}/grub-btrfs.new file. Old grub-btrfs.cfg (if present) was not replaced."
 fi
+
+# warn when this script is run but there is no entry in grub.cfg
+grep "snapshots-btrfs" "${grub_directory}/grub.cfg" || printf "\nWARNING: '%s' needs to run at least once to generate the snapshots (sub)menu entry in grub the main menu. \
+After that this script can run alone to generate the snapshot entries.\n\n" "${GRUB_BTRFS_MKCONFIG:-grub-mkconfig}" >&2 ;
