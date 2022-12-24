@@ -4,15 +4,15 @@ set -e
 
 case "$1" in
 upgrade|full-upgrade|dist-upgrade)
-    if dpkg --compare-versions "$2" lt "4.11-6kaisen"; then
+    if dpkg --compare-versions "$2" lt "4.12-2kaisen"; then
         rm -f "/lib/systemd/system/grub-btrfs.path"
-	rm -f "/lib/systemd/system/grub-btrfs.service"
+	rm -f "/etc/systemd/system/multi-user.target.wants/grub-btrfs.path"
 	rm -rf "/etc/systemd/system/\\x2esnapshots.mount.wants"
     fi
 esac
 
 # Automatically added by dh_installsystemd/13.10.1
 if [ -z "${DPKG_ROOT:-}" ] && [ "$1" = remove ] && [ -d /run/systemd/system ] ; then
-	deb-systemd-invoke stop 'grub-btrfs.path' 'grub-btrfs.service' >/dev/null || true
+	deb-systemd-invoke stop 'grub-btrfs.service' >/dev/null || true
 fi
 # End automatically added section

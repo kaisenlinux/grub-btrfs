@@ -1,0 +1,13 @@
+Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
+
+--- grub-btrfs-4.12.orig/grub-btrfsd.service
++++ grub-btrfs-4.12/grub-btrfsd.service
+@@ -16,7 +16,7 @@ EnvironmentFile=/etc/default/grub-btrfs/
+ # -l, --log-file        Specify a logfile to write to
+ # -v, --verbose         Let the log of the daemon be more verbose
+ # -s, --syslog          Write to syslog
+-ExecStart=/usr/bin/grub-btrfsd --syslog /.snapshots
++ExecStart=/usr/share/grub-btrfs/grub-btrfsd --syslog --timeshift-auto
+ 
+ [Install]
+ WantedBy=multi-user.target
