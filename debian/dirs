@@ -2,3 +2,6 @@ etc
 etc/grub.d
 etc/default
 etc/default/grub-btrfs
+usr
+usr/share
+usr/share/grub-btrfs

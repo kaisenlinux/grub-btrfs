@@ -1,8 +1,0 @@
-[Unit]
-Description=Monitors for new Timeshift snapshots
-
-[Path]
-PathModified=/run/timeshift
-
-[Install]
-WantedBy=multi-user.target
