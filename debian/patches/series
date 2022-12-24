@@ -1,8 +1,1 @@
 kaisen-settings
-delete-the-btrfs-cfg
-use-timeshift-as-default-software-and-move-btrfsd
-use-bash-instead-of-sh-btrfsd
-only-recreation-of-the-grub-btrfs-file
-dynamic-grub-entry
-do-not-display-for-the-grub-mkconfig-command
-display-the-version-number-of-the-package

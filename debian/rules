@@ -6,7 +6,6 @@
 override_dh_auto_install:
 	install -p -m 0755 $(CURDIR)/41_snapshots-btrfs $(CURDIR)/debian/grub-btrfs/etc/grub.d
 	install -p -m 0644 $(CURDIR)/config $(CURDIR)/debian/grub-btrfs/etc/default/grub-btrfs
-	install -p -m 0755 $(CURDIR)/grub-btrfsd $(CURDIR)/debian/grub-btrfs/usr/share/grub-btrfs
 
 override_dh_installman:
 	dh_installman

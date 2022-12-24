@@ -1,22 +1,3 @@
-grub-btrfs (4.12-2kaisen) kaisen-packages; urgency=medium
-
-  * Add two quilt patchs:
-    - Default deletion of the grub-btrfs.cfg to fix the bug with not valid entries
-    - Use of the default systemd service provided by the software (combined with
-      the grub-btrfsd script)
-    - Don't display the warning after the first execution of the grub-mkconfig command
-    - Creation of the dynamic menu entry for grub-btrfs
-    - Use bash as default shell for the grub-btrfsd script
-    - Use timeshift as the default software checked by the systemd service and move
-      the localization of the grub-btrfsd script
-    - The --version display the package version number
-  * The systemd unit file path don't needed now
-  * Update the dpkg --compare-versions to the 4.12-2kaisen version
-  * Auto deletion of the grub-btrfs.new and grub-btrfs.cfg files when the grub-btrfs
-    package is removed
-
- -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Sat, 24 Dec 2022 02:54:49 +0100
-
 grub-btrfs (4.12-1kaisen) kaisen-packages; urgency=medium
 
   * Import the 4.12 version

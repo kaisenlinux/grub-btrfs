@@ -15,5 +15,4 @@ Depends:
  ${misc:Depends},
  btrfs-progs,
  gawk,
- inotify-tools,
 Description: Include btrfs snapshots in the GRUB menu
