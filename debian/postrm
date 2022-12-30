@@ -4,11 +4,11 @@ set -e
 
 case "$1" in
 	remove|autoremove|purge)
-	if command -v update-grub > /dev/null
+	if command -v grub-mkconfig > /dev/null
 	then
-		update-grub || true
+		grub-mkconfig -o /boot/grub/grub.cfg || true
 	fi
-	rm -f /boot/grub/grub-btrfs.{new,cfg}
+	rm -f /boot/grub/grub-btrfs.{new,cfg,cfg.bkp}
 	;;
 esac
 

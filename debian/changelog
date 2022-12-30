@@ -1,3 +1,10 @@
+grub-btrfs (4.12-3kaisen) kaisen-packages; urgency=medium
+
+  * Replace the delete-the-btrfs-cfg patch by the create-a-backup-of-the-btrfs-cfg-if-exist
+    patch and the delete-new-and-bkp-files-and-restore-backup-if-fail patch
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Fri, 30 Dec 2022 02:34:48 +0100
+
 grub-btrfs (4.12-2kaisen) kaisen-packages; urgency=medium
 
   * Add two quilt patchs:

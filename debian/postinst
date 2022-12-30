@@ -3,9 +3,9 @@
 set -e
 
 if [ -z "$2" ]; then
-	if command -v update-grub > /dev/null
+	if command -v grub-mkconfig > /dev/null
 	then
-		update-grub || true
+		grub-mkconfig -o /boot/grub/grub.cfg || true
 	fi
 fi
 
@@ -37,8 +37,8 @@ fi
 # End automatically added section
 
 if dpkg --compare-versions "$2" lt "4.12-2kaisen"; then
-	if command -v update-grub > /dev/null
+	if command -v grub-mkconfig > /dev/null
 	then
-		update-grub || true
+		grub-mkconfig -o /boot/grub/grub.cfg || true
 	fi
 fi

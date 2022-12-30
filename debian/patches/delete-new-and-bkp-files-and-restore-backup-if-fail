@@ -1,0 +1,29 @@
+Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
+
+--- grub-btrfs-4.12.orig/41_snapshots-btrfs
++++ grub-btrfs-4.12/41_snapshots-btrfs
+@@ -593,17 +593,21 @@ EOF
+ if [[ "${GRUB_BTRFS_SHOW_TOTAL_SNAPSHOTS_FOUND:-"true"}" = "true" && -n "${count_limit_snap}" && "${count_limit_snap}" != "0" ]]; then
+     printf "Found %s snapshot(s)\n" "${count_limit_snap}" >&2 ;
+ fi
+-# if no snapshot found, exit
++# if no snapshot found, delete the "$grub_directory/grub-btrfs.new" file and the "$grub_directory/grub-btrfs.cfg.bkp" file and exit
+ if [[ "${count_limit_snap}" = "0" || -z "${count_limit_snap}" ]]; then
++    rm -f "$grub_directory/grub-btrfs.new" "$grub_directory/grub-btrfs.cfg.bkp"
+     print_error "No snapshots found."
+ fi
+ # Move "grub-btrfs.new" to "grub-btrfs.cfg"
+ header_menu
+ if "${bindir}/${GRUB_BTRFS_SCRIPT_CHECK:-grub-script-check}" "$grub_directory/grub-btrfs.new"; then
+     cat "$grub_directory/grub-btrfs.new" > "$grub_directory/grub-btrfs.cfg"
+-    rm -f "$grub_directory/grub-btrfs.new"
++    rm -f "$grub_directory/grub-btrfs.new" "$grub_directory/grub-btrfs.cfg.bkp"
+ else
+-    print_error "Syntax errors were detected in generated ${grub_directory}/grub-btrfs.new file. Old grub-btrfs.cfg (if present) was not replaced."
++if [ -e "$grub_directory/grub-btrfs.cfg.bkp" ]; then
++	mv -f "$grub_directory/grub-btrfs.cfg.bkp" "$grub_directory/grub-btrfs.cfg"
++fi
++	print_error "Syntax errors were detected in generated ${grub_directory}/grub-btrfs.new file. The old grub-btrfs.cfg (if present) have been restored."
+ fi
+ 
+ # warn when this script is run but there is no entry in grub.cfg
