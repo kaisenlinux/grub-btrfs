@@ -1,9 +1,8 @@
 kaisen-settings
 use-timeshift-as-default-software-and-move-btrfsd
 use-bash-instead-of-sh-btrfsd
-only-recreation-of-the-grub-btrfs-file
 dynamic-grub-entry
-do-not-display-for-the-grub-mkconfig-command
+do-not-display-the-warning-for-grub-mkconfig
 display-the-version-number-of-the-package
 create-a-backup-of-the-btrfs-cfg-if-exist
 delete-new-and-bkp-files-and-restore-backup-if-fail

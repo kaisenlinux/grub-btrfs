@@ -1,3 +1,9 @@
+grub-btrfs (4.12-4kaisen) kaisen-packages; urgency=medium
+
+  * Deletion of the only-recreation-of-the-grub-btrfs-file patch
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Sat, 28 Jan 2023 01:20:07 +0100
+
 grub-btrfs (4.12-3kaisen) kaisen-packages; urgency=medium
 
   * Replace the delete-the-btrfs-cfg patch by the create-a-backup-of-the-btrfs-cfg-if-exist
