@@ -36,7 +36,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-decon
 fi
 # End automatically added section
 
-if dpkg --compare-versions "$2" lt "4.12-2kaisen"; then
+if dpkg --compare-versions "$2" lt "4.12-5kaisen"; then
 	if command -v grub-mkconfig > /dev/null
 	then
 		grub-mkconfig -o /boot/grub/grub.cfg || true

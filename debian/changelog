@@ -1,3 +1,11 @@
+grub-btrfs (4.12-5kaisen) kaisen-packages; urgency=medium
+
+  * Readd of the only-recreation-of-the-grub-btrfs-file patch
+  * Update the postinst to exec the regeneration of the grub.cfg
+    to fix the snapshots not found bug
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Tue, 31 Jan 2023 00:28:58 +0100
+
 grub-btrfs (4.12-4kaisen) kaisen-packages; urgency=medium
 
   * Deletion of the only-recreation-of-the-grub-btrfs-file patch

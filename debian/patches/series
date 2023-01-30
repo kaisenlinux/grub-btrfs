@@ -6,3 +6,4 @@ do-not-display-the-warning-for-grub-mkconfig
 display-the-version-number-of-the-package
 create-a-backup-of-the-btrfs-cfg-if-exist
 delete-new-and-bkp-files-and-restore-backup-if-fail
+only-recreation-of-the-grub-btrfs-file
