@@ -1,3 +1,9 @@
+grub-btrfs (4.12-6kaisen) kaisen-packages; urgency=medium
+
+  * Add the overlay support when booting in a snapshot
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Tue, 31 Jan 2023 20:40:42 +0100
+
 grub-btrfs (4.12-5kaisen) kaisen-packages; urgency=medium
 
   * Readd of the only-recreation-of-the-grub-btrfs-file patch

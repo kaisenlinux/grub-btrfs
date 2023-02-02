@@ -29,7 +29,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  
  ## Parameters passed to the kernel
 -kernel_parameters="$GRUB_CMDLINE_LINUX $GRUB_CMDLINE_LINUX_DEFAULT"
-+kernel_parameters="$GRUB_CMDLINE_LINUX $GRUB_CMDLINE_LINUX_DEFAULT splash"
++kernel_parameters="$GRUB_CMDLINE_LINUX $GRUB_CMDLINE_LINUX_DEFAULT splash kaisen-grub-btrfs"
  ## Mount point location
  grub_btrfs_mount_point=$(mktemp -dt grub-btrfs.XXXXXXXXXX)
  ## Class for theme
