@@ -1,0 +1,28 @@
+#!/bin/bash
+
+RED='\e[1;31m'
+
+if [ "$EUID" -ne 0 ]; then
+	echo -e $RED "Run this script as root or with the sudo command.";tput init
+	exit 1
+fi
+
+if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
+	echo -e $RED "Running in chroot, ignore the snapshot creation request.";tput init
+	exit 1
+fi
+
+if ! command -v timeshift > /dev/null; then
+	exit 1
+fi
+
+cat /proc/cmdline | grep kaisen-grub-btrfs > /dev/null
+
+if [ $? -ne 0 ]; then
+	echo -e $RED "You have not booted from a snapshot. Aborting.";tput init
+	exit 1
+fi
+
+SNAPSHOT=`awk -F 'subvol=timeshift-btrfs/snapshots/' '{ print $2 }' /proc/cmdline | cut -d '/' -f1`
+
+timeshift --yes --scripted --btrfs --restore --snapshot "$SNAPSHOT"

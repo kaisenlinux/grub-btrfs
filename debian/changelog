@@ -1,3 +1,30 @@
+grub-btrfs (4.13-1kaisen) kaisen-packages; urgency=medium
+
+  * Import the new upstream release
+  * Add a new script named kaisen-timeshift-fast-restore to restore more easier
+    the booted snapshot
+  * These following patches are deleted because integrated in the 4.13 release:
+    - use-bash-instead-of-sh-btrfsd
+    - dynamic-grub-entry
+    - create-a-backup-of-the-btrfs-cfg-if-exist
+    - delete-new-and-bkp-files-and-restore-backup-if-fail
+    - only-recreation-of-the-grub-btrfs-file
+  * The kaisen-settings patch is deleted to be replaced by the kaisen-snapshot-config
+    patch and the kaisen-config patch.
+  * The do-not-display-the-warning-for-grub-mkconfig patch is merged in the
+    kaisen-snapshot-config
+  * The display-the-version-number-of-the-package patch is merged in the kaisen-config
+    patch
+  * The splash and kaisen-grub-btrfs kernel cmdline is now integrated in the
+    kaisen-config patch
+  * News modifications provided by the kaisen-config patch:
+    - Set the snap show limit at 50
+    - Replace update-grub by the grub-mkconfig command
+    - Enable the submenu protection
+  * Add the kaisen-use-non-var-path-btrfsd-grub-regeneration patch
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Wed, 20 Sep 2023 04:29:03 +0100
+
 grub-btrfs (4.12-6kaisen) kaisen-packages; urgency=medium
 
   * Add the overlay support when booting in a snapshot

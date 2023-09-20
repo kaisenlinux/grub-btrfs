@@ -3,6 +3,7 @@ etc/grub.d
 etc/default
 etc/default/grub-btrfs
 usr
+usr/sbin
 usr/share
 usr/share/grub-btrfs
 usr/share/initramfs-tools
