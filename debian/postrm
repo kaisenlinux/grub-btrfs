@@ -7,10 +7,6 @@ if [ "$1" = "purge" ]; then
 	then
 		grub-mkconfig -o /boot/grub/grub.cfg || true
 	fi
-	if command -v update-initramfs > /dev/null
-	then
-		update-initramfs -u -k all || true
-	fi
 	for ext in new cfg cfg.bkp; do 
 	    rm -f /boot/grub/grub-btrfs.$ext
 	done
