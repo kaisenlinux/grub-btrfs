@@ -1,4 +1,4 @@
-grub-btrfs (4.13-1kaisen) kaisen-packages; urgency=medium
+grub-btrfs (4.13~-1kaisen) kaisen-packages; urgency=medium
 
   * Import the new upstream release
   * Add a new script named kaisen-timeshift-fast-restore to restore more easier
