@@ -16,5 +16,5 @@ Depends:
  btrfs-progs,
  gawk,
  inotify-tools,
- initramfs-tools,
+ initramfs-tools | dracut-core,
 Description: Include btrfs snapshots in the GRUB menu
