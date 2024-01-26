@@ -1,0 +1,6 @@
+debian/kaisen-timeshift-fast-restore /usr/sbin/
+41_snapshots-btrfs /etc/grub.d/
+config /etc/default/grub-btrfs/
+grub-btrfsd /usr/share/grub-btrfs/
+debian/initramfs/hooks/grub-btrfs /usr/share/initramfs-tools/hooks/
+debian/initramfs/local-bottom/grub-btrfs /usr/share/initramfs-tools/scripts/local-bottom/
