@@ -14,3 +14,6 @@ override_dh_installman:
 
 override_dh_installsystemd:
 	dh_installsystemd --no-restart-after-upgrade --no-stop-on-upgrade --no-restart-on-upgrade
+
+# do not run clean rules
+override_dh_auto_clean:
