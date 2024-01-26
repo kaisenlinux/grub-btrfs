@@ -1,4 +1,13 @@
-grub-btrfs (4.13~-1kaisen) kaisen-packages; urgency=medium
+grub-btrfs (4.13+ds-1) unstable; urgency=medium
+
+  * Import package from kaisen. Ensure smooth upgrade by
+    using +ds suffix
+  * Use gbp
+  * Add debian/watch
+
+ -- Bastien Roucariès <rouca@debian.org>  Fri, 26 Jan 2024 20:36:24 +0000
+
+grub-btrfs (4.13-1kaisen) kaisen-packages; urgency=medium
 
   * Import the new upstream release
   * Add a new script named kaisen-timeshift-fast-restore to restore more easier
