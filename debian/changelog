@@ -1,3 +1,16 @@
+grub-btrfs (4.13-2kaisen) kaisen-packages; urgency=medium
+
+  * Many improvements of the kaisen-timeshift-fast-restore script:
+    - BASH variables in uppercase
+    - Variables quotted
+    - PATH variable export to limit risks of path traversal
+    - The snapshot device is now automatically detected for the restoration
+      (fix Device : Not Selected)
+    - Log messages is now in colors
+    - The restoring snapshot is now display in the stdout
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Wed, 31 Jan 2024 21:37:41 +0100
+
 grub-btrfs (4.13-1kaisen) kaisen-packages; urgency=medium
 
   * Import the new upstream release

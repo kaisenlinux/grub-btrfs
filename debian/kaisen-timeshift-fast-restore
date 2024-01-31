@@ -1,6 +1,8 @@
 #!/bin/bash
 
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 RED='\e[1;31m'
+YELLOW='\e[0;33m'
 
 if [ "$EUID" -ne 0 ]; then
 	echo -e $RED "Run this script as root or with the sudo command.";tput init
@@ -24,5 +26,7 @@ if [ $? -ne 0 ]; then
 fi
 
 SNAPSHOT=`awk -F 'subvol=timeshift-btrfs/snapshots/' '{ print $2 }' /proc/cmdline | cut -d '/' -f1`
+DEVICE=`grep -v '#' /etc/fstab | grep -w / | grep -w subvol=@ | cut -d ' ' -f1 | cut -d '=' -f2`
 
-timeshift --yes --scripted --btrfs --restore --snapshot "$SNAPSHOT"
+echo -e $YELLOW "The snapshot $SNAPSHOT will be restored.";tput init
+timeshift --yes --scripted --btrfs --restore --snapshot "$SNAPSHOT" --snapshot-device "$DEVICE" --target "$DEVICE"
