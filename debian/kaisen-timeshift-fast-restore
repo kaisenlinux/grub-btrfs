@@ -5,12 +5,12 @@ RED='\e[1;31m'
 YELLOW='\e[0;33m'
 
 if [ "$EUID" -ne 0 ]; then
-	echo -e $RED "Run this script as root or with the sudo command.";tput init
+	echo -e $RED "Run this script as root or with the sudo command.";tput sgr0
 	exit 1
 fi
 
 if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
-	echo -e $RED "Running in chroot, ignore the snapshot creation request.";tput init
+	echo -e $RED "Running in chroot, ignore the snapshot creation request.";tput sgr0
 	exit 1
 fi
 
@@ -21,12 +21,12 @@ fi
 cat /proc/cmdline | grep kaisen-grub-btrfs > /dev/null
 
 if [ $? -ne 0 ]; then
-	echo -e $RED "You have not booted from a snapshot. Aborting.";tput init
+	echo -e $RED "You have not booted from a snapshot. Aborting.";tput sgr0
 	exit 1
 fi
 
 SNAPSHOT=`awk -F 'subvol=timeshift-btrfs/snapshots/' '{ print $2 }' /proc/cmdline | cut -d '/' -f1`
 DEVICE=`grep -v '#' /etc/fstab | grep -w / | grep -w subvol=@ | cut -d ' ' -f1 | cut -d '=' -f2`
 
-echo -e $YELLOW "The snapshot $SNAPSHOT will be restored.";tput init
+echo -e $YELLOW "The snapshot $SNAPSHOT will be restored.";tput sgr0
 timeshift --yes --scripted --btrfs --restore --snapshot "$SNAPSHOT" --snapshot-device "$DEVICE" --target "$DEVICE"

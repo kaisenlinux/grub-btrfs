@@ -1,3 +1,9 @@
+grub-btrfs (4.13-3kaisen) kaisen-packages; urgency=medium
+
+  * Replace tput init by tput sgr0 in the kaisen-timeshift-fast-restore script
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Wed, 13 Mar 2024 00:42:46 +0100
+
 grub-btrfs (4.13-2kaisen) kaisen-packages; urgency=medium
 
   * Many improvements of the kaisen-timeshift-fast-restore script:
