@@ -1,3 +1,9 @@
+grub-btrfs (4.13-4kaisen) kaisen-packages; urgency=medium
+
+  * Replace the tput sgr0 command by a BASH escape sequence to reset the color
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Thu, 25 Apr 2024 08:32:52 +0100
+
 grub-btrfs (4.13-3kaisen) kaisen-packages; urgency=medium
 
   * Replace tput init by tput sgr0 in the kaisen-timeshift-fast-restore script
