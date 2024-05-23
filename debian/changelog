@@ -1,3 +1,9 @@
+grub-btrfs (4.13-5kaisen) kaisen-packages; urgency=medium
+
+  * Update the local-bottom script for non boot on read-only
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Thu, 23 May 2024 18:26:12 +0200
+
 grub-btrfs (4.13-4kaisen) kaisen-packages; urgency=medium
 
   * Replace the tput sgr0 command by a BASH escape sequence to reset the color

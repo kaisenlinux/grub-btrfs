@@ -15,6 +15,10 @@ case $1 in
 	;;
 esac
 
+#Umount and remount /run for non read-only fs
+umount /run
+mount /run /run
+
 #Check if the kaisen-grub-btrfs param is used to start in overlay
 cat /proc/cmdline | grep kaisen-grub-btrfs > /dev/null || exit 0
 
