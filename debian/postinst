@@ -9,13 +9,6 @@ if [ -z "$2" ]; then
 	fi
 fi
 
-if [ "$1" = "configure" ]; then
-	if command -v update-initramfs >/dev/null
-	then
-		update-initramfs -u -k all || true
-	fi
-fi
-
 # End automatically added section
 # Automatically added by dh_installsystemd/13.10.1
 if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-deconfigure" ] || [ "$1" = "abort-remove" ] ; then
@@ -42,10 +35,3 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-decon
 	fi
 fi
 # End automatically added section
-
-if dpkg --compare-versions "$2" lt "4.12-5kaisen"; then
-	if command -v grub-mkconfig > /dev/null
-	then
-		grub-mkconfig -o /boot/grub/grub.cfg || true
-	fi
-fi

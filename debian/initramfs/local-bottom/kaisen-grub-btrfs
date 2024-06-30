@@ -1,0 +1,32 @@
+#!/bin/sh
+
+set -e
+
+PREREQ=""
+
+prereqs() {
+	echo "$PREREQ"
+}
+
+case $1 in
+	prereqs)
+		prereqs
+		exit 0
+	;;
+esac
+
+#Check if the kaisen-grub-btrfs param is used to start in overlay
+cat /proc/cmdline | grep kaisen-grub-btrfs > /dev/null || exit 0
+
+if [ -x /usr/bin/btrfs -a -x /usr/bin/findmnt ] && \
+	[ "$(findmnt -no FSTYPE -M /root)" = btrfs ] && \
+	[ "$(btrfs property get /root ro)" = ro=false ]; then
+	KAISEN_OVERLAY_MP="$(mktemp -dp /)"
+	KAISEN_OVERLAY_LOWERDIR="$KAISEN_OVERLAY_MP/lower"
+	KAISEN_OVERLAY_UPPERDIR="$KAISEN_OVERLAY_MP/upper"
+	KAISEN_OVERLAY_WORKDIR="$KAISEN_OVERLAY_MP/work"
+	mount -t tmpfs tmpfs "$KAISEN_OVERLAY_MP"
+	mkdir -p "$KAISEN_OVERLAY_LOWERDIR" "$KAISEN_OVERLAY_UPPERDIR" "$KAISEN_OVERLAY_WORKDIR"
+	mount --move --no-mtab /root "$KAISEN_OVERLAY_LOWERDIR"
+	mount -t overlay -o lowerdir="$KAISEN_OVERLAY_LOWERDIR",upperdir="$KAISEN_OVERLAY_UPPERDIR",workdir="$KAISEN_OVERLAY_WORKDIR" kaisen-grub-btrfs /root
+fi

@@ -1,3 +1,16 @@
+grub-btrfs (4.13-6kaisen) kaisen-packages; urgency=medium
+
+  * Readd the overlayfs support on a snapshot
+  * Fix the read-only system error message
+  * Rename use-timeshift-as-default-software-and-move-btrfsd in
+    kaisen-use-timeshift-as-default-software-and-move-btrfsd
+  * Update the initramfs only with a trigger
+  * Update the postinst script
+  * Rename grub-btrfs initramfs scripts in kaisen-grub-btrfs
+  * Update the local-bottom kaisen-grub-btrfs initramfs script
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Mon, 01 Jul 2024 00:29:34 +0200
+
 grub-btrfs (4.13-5kaisen) kaisen-packages; urgency=medium
 
   * Update the local-bottom script for non boot on read-only

@@ -7,7 +7,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  
 -
 -GRUB_BTRFS_VERSION=4.12-master-2023-04-28T16:26:00+00:00
-+GRUB_BTRFS_VERSION=4.13-1kaisen
++GRUB_BTRFS_VERSION=4.13-6kaisen
  
  # Disable grub-btrfs.
  # Default: "false"
@@ -49,7 +49,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  # or "rd.live.overlay.readonly=1" to the Kernel for booting snapshots read only.
  # Default: ""
 -#GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS="rd.live.overlay.overlayfs=1"
-+GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS="splash kaisen-grub-btrfs"
++GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS="rw splash kaisen-grub-btrfs"
  
  # Comma seperated mount options to be used when booting a snapshot.
  # They can be defined here as well as in the "/" line inside the respective snapshots'
