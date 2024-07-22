@@ -1,0 +1,10 @@
+[Unit]
+Description=Remount all mounted FS in RO
+Documentation=https://kaisenlinux.org/documentation
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/kaisen-grub-btrfs/kaisen-grub-btrfs-ro
+
+[Install]
+WantedBy=multi-user.target

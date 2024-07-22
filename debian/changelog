@@ -1,3 +1,10 @@
+grub-btrfs (4.13-7kaisen) kaisen-packages; urgency=medium
+
+  * Add a systemd daemon and a bash script to umount /boot and /boot/efi if exists
+  * Remove the update-initramfs command in the postrm script 
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Mon, 22 Jul 2024 19:17:07 +0200
+
 grub-btrfs (4.13-6kaisen) kaisen-packages; urgency=medium
 
   * Readd the overlayfs support on a snapshot

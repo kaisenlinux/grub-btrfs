@@ -12,6 +12,8 @@ override_dh_auto_install:
 	install -p -m 0755 $(CURDIR)/grub-btrfsd $(CURDIR)/debian/grub-btrfs/usr/share/grub-btrfs/
 	install -p -m 0755 $(CURDIR)/debian/initramfs/hooks/kaisen-grub-btrfs $(CURDIR)/debian/grub-btrfs/usr/share/initramfs-tools/hooks/
 	install -p -m 0755 $(CURDIR)/debian/initramfs/local-bottom/kaisen-grub-btrfs $(CURDIR)/debian/grub-btrfs/usr/share/initramfs-tools/scripts/local-bottom/
+	install -p -m 0755 $(CURDIR)/debian/kaisen-grub-btrfs-ro/kaisen-grub-btrfs-ro $(CURDIR)/debian/grub-btrfs/usr/share/kaisen-grub-btrfs/
+	install -p -m 0644 $(CURDIR)/debian/kaisen-grub-btrfs-ro/kaisen-grub-btrfs-ro.service $(CURDIR)/debian/grub-btrfs/usr/lib/systemd/system/
 
 override_dh_installman:
 	dh_installman
