@@ -4,4 +4,4 @@
 grep kaisen-grub-btrfs /proc/cmdline &> /dev/null || exit 0
 
 #Umount only /boot recursively partition
-for MOUNTPOINTS in `mount | grep -w '/boot\|/boot/efi' | awk '{ print $3 }'`;do umount --recursive --force "${MOUNTPOINTS}" || true;done
+for MOUNTPOINTS in `mount | grep -w '/boot\|/boot/efi\|/sys/firmware/efi/efivars' | awk '{ print $3 }'`;do umount --recursive --force "${MOUNTPOINTS}" || true;done
