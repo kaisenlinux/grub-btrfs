@@ -1,7 +1,16 @@
 #!/bin/bash
 
-#Execute only when booted from a snapshot
-grep kaisen-grub-btrfs /proc/cmdline &> /dev/null || exit 0
+set -e
+
+#Execute only when booted from a snapshot and the fstab=no CMDLINE was defined
+grep -E '(kaisen-grub-btrfs|fstab=no)' /proc/cmdline &> /dev/null || exit 0
 
 #Umount only /boot recursively partition
-for MOUNTPOINTS in `mount | grep -w '/boot\|/boot/efi\|/sys/firmware/efi/efivars' | awk '{ print $3 }'`;do umount --recursive --force "${MOUNTPOINTS}" || true;done
+if [ "`mount | grep -w /sys/firmware/efi/efivars | awk '{ print $3 }'`" = "/sys/firmware/efi/efivars" ]; then
+	umount --recursive --force /sys/firmware/efi/efivars
+fi
+
+#Do not start the conky
+if [ -e /etc/xdg/autostart/kaisen-conky.desktop ]; then
+	rm -f /etc/xdg/autostart/kaisen-conky.desktop
+fi

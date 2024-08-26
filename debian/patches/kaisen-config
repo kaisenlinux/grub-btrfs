@@ -7,7 +7,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  
 -
 -GRUB_BTRFS_VERSION=4.12-master-2023-04-28T16:26:00+00:00
-+GRUB_BTRFS_VERSION=4.13-6kaisen
++GRUB_BTRFS_VERSION=4.13-9kaisen
  
  # Disable grub-btrfs.
  # Default: "false"

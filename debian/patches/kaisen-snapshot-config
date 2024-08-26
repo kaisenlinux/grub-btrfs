@@ -20,7 +20,20 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  submenuname=${GRUB_BTRFS_SUBMENUNAME:-"${distro:-Linux} snapshots"}
  ## Limit snapshots to show in the Grub menu (default=50)
  limit_snap_show="${GRUB_BTRFS_LIMIT:-50}"
-@@ -617,5 +617,5 @@ fi
+@@ -123,7 +123,11 @@ boot_hs=$(${grub_probe} --device ${boot_
+ boot_fs=$(${grub_probe} --device ${boot_device} --target="fs" 2>/dev/null) # Type filesystem of boot device
+ 
+ ## Parameters passed to the kernel
+-kernel_parameters="$GRUB_CMDLINE_LINUX $GRUB_CMDLINE_LINUX_DEFAULT $GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS"
++if [ "`cat /etc/fstab | grep -ivwE '(^[#|$]|/|nfs|ceph|fuse|autofs|gfs2|ocfs2|smb)' | awk '{ print $2 }' | sed -r ':a;$!N;s/\n(\S)/ \1/;ta;s/,\s+/,/g;P;d'`" = "/home" ] || [ "`cat /etc/fstab | grep -ivwE '(^[#|$]|/|nfs|ceph|fuse|autofs|gfs2|ocfs2|smb)' | awk '{ print $2 }' | sed -r ':a;$!N;s/\n(\S)/ \1/;ta;s/,\s+/,/g;P;d'`" = "/boot" ] || [ "`cat /etc/fstab | grep -ivwE '(^[#|$]|/|nfs|ceph|fuse|autofs|gfs2|ocfs2|smb)' | awk '{ print $2 }' | sed -r ':a;$!N;s/\n(\S)/ \1/;ta;s/,\s+/,/g;P;d'`" = "/boot/efi" ] || [ "`cat /etc/fstab | grep -ivwE '(^[#|$]|/|nfs|ceph|fuse|autofs|gfs2|ocfs2|smb)' | awk '{ print $2 }' | sed -r ':a;$!N;s/\n(\S)/ \1/;ta;s/,\s+/,/g;P;d'`" = "/home /boot" ] || [ "`cat /etc/fstab | grep -ivwE '(^[#|$]|/|nfs|ceph|fuse|autofs|gfs2|ocfs2|smb)' | awk '{ print $2 }' | sed -r ':a;$!N;s/\n(\S)/ \1/;ta;s/,\s+/,/g;P;d'`" = "/home /boot/efi" ] || [ "`cat /etc/fstab | grep -ivwE '(^[#|$]|/|nfs|ceph|fuse|autofs|gfs2|ocfs2|smb)' | awk '{ print $2 }' | sed -r ':a;$!N;s/\n(\S)/ \1/;ta;s/,\s+/,/g;P;d'`" = "/boot /boot/efi" ] || [ "`cat /etc/fstab | grep -ivwE '(^[#|$]|/|nfs|ceph|fuse|autofs|gfs2|ocfs2|smb)' | awk '{ print $2 }' | sed -r ':a;$!N;s/\n(\S)/ \1/;ta;s/,\s+/,/g;P;d'`" = "/home /boot /boot/efi" ]; then
++	kernel_parameters="$GRUB_CMDLINE_LINUX $GRUB_CMDLINE_LINUX_DEFAULT $GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS fstab=no"
++else
++	kernel_parameters="$GRUB_CMDLINE_LINUX $GRUB_CMDLINE_LINUX_DEFAULT $GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS"
++fi
+ ## Mount point location
+ grub_btrfs_mount_point=$(mktemp -dt grub-btrfs.XXXXXXXXXX)
+ ## Class for theme
+@@ -617,5 +621,5 @@ fi
  fi
  
  # warn when this script is run but there is no entry in grub.cfg
