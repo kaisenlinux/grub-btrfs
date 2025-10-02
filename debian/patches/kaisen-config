@@ -1,13 +1,13 @@
 Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
 
---- grub-btrfs-4.14.orig/config
-+++ grub-btrfs-4.14/config
-@@ -1,15 +1,15 @@
+--- grub-btrfs-4.13.orig/config
++++ grub-btrfs-4.13/config
+@@ -1,15 +1,14 @@
  #!/usr/bin/env bash
  
- 
--GRUB_BTRFS_VERSION=4.13-yabsnap_info_support-2024-03-06T13:43:57+00:00
-+GRUB_BTRFS_VERSION=4.14-1kaisen
+-
+-GRUB_BTRFS_VERSION=4.12-master-2023-04-28T16:26:00+00:00
++GRUB_BTRFS_VERSION=4.13-9kaisen
  
  # Disable grub-btrfs.
  # Default: "false"
@@ -21,7 +21,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  
  # Custom title.
  # Shows/Hides "date" "snapshot" "type" "description" in the Grub menu, custom order available.
-@@ -18,7 +18,7 @@ GRUB_BTRFS_VERSION=4.13-yabsnap_info_sup
+@@ -18,7 +17,7 @@ GRUB_BTRFS_VERSION=4.12-master-2023-04-2
  
  # Limit the number of snapshots populated in the GRUB menu.
  # Default: "50"
@@ -30,7 +30,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  
  # Sort the found subvolumes by "ogeneration" or "generation" or "path" or "rootid".
  # # See Sorting section to https://btrfs.wiki.kernel.org/index.php/Manpage/btrfs-subvolume#SUBCOMMAND
-@@ -28,11 +28,11 @@ GRUB_BTRFS_VERSION=4.13-yabsnap_info_sup
+@@ -28,11 +27,11 @@ GRUB_BTRFS_VERSION=4.12-master-2023-04-2
  
  # Show snapshots found during run "grub-mkconfig"
  # Default: "true"
@@ -44,22 +44,16 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  
  # By default, "grub-btrfs" automatically detects most existing kernels.
  # If you have one or more custom kernels, you can add them here.
-@@ -54,7 +54,7 @@ GRUB_BTRFS_VERSION=4.13-yabsnap_info_sup
+@@ -54,7 +53,7 @@ GRUB_BTRFS_VERSION=4.12-master-2023-04-2
  # For dracut based distros this could be useful to pass "rd.live.overlay.overlayfs=1"
  # or "rd.live.overlay.readonly=1" to the Kernel for booting snapshots read only.
  # Default: ""
 -#GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS="rd.live.overlay.overlayfs=1"
 +GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS="rw splash kaisen-grub-btrfs"
  
- # Comma separated mount options to be used when booting a snapshot.
+ # Comma seperated mount options to be used when booting a snapshot.
  # They can be defined here as well as in the "/" line inside the respective snapshots'
-@@ -95,24 +95,24 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
- # either located at the system root or on a separate partition or in a subvolume,
- # Change to "true" if your boot partition isn't detected as separate.
- # Default: "false"
--#GRUB_BTRFS_OVERRIDE_BOOT_PARTITION_DETECTION="true"
-+GRUB_BTRFS_OVERRIDE_BOOT_PARTITION_DETECTION="false"
- 
+@@ -98,19 +97,19 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
  # Location of the folder containing the "grub.cfg" file.
  # Might be grub2 on some systems.
  # Default: "/boot/grub"
@@ -74,7 +68,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  
  # Location where grub-btrfs.cfg should be saved.
  # Some distributions (like OpenSuSE) store those files at the snapshot directory
- # instead of boot. Be aware that this directory must be available for grub during
+ # instead of boot. Be aware that this direcory must be available for grub during
  # startup of the system.
  # Default: $GRUB_BTRFS_GRUB_DIRNAME
 -#GRUB_BTRFS_GBTRFS_DIRNAME="/boot/grub"
@@ -82,7 +76,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  
  # Location of the directory where Grub searches for the grub-btrfs.cfg file.
  # Some distributions (like OpenSuSE) store those file at the snapshot directory
-@@ -132,7 +132,7 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
+@@ -130,7 +129,7 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
  # For example, on Fedora : "/sbin/grub2-mkconfig"
  # You can use only name or full path.
  # Default: grub-mkconfig
@@ -91,14 +85,18 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  
  # Name of grub-script-check command, use by "grub-btrfs"
  # Might be 'grub2-script-check' on some systems (Fedora ...)
-@@ -157,8 +157,8 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
+@@ -141,7 +140,7 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
+ # Path of grub-mkconfig_lib file, use by "grub-btrfs"
+ # Might be '/usr/share/grub2/grub-mkconfig_lib' on some systems (Opensuse ...)
+ # Default: /usr/share/grub/grub-mkconfig_lib
+-#GRUB_BTRFS_MKCONFIG_LIB=/usr/share/grub2/grub-mkconfig_lib
++GRUB_BTRFS_MKCONFIG_LIB=/usr/share/grub/grub-mkconfig_lib
+ 
+ # Password protection management for submenu,snapshots
+ # Refer to the Grub documentation https://www.gnu.org/software/grub/manual/grub/grub.html#Authentication-and-authorisation
+@@ -155,4 +154,4 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/
  # Disable authentication support for submenu of Grub-btrfs only (--unrestricted)
  # doesn't work if GRUB_BTRFS_PROTECTION_AUTHORIZED_USERS isn't empty
  # Default: "false"
 -#GRUB_BTRFS_DISABLE_PROTECTION_SUBMENU="true"
 +GRUB_BTRFS_DISABLE_PROTECTION_SUBMENU="false"
- 
- # Enable booting from snapshots stored on LUKS encrypted devices
- # Default: "false"
--#GRUB_BTRFS_ENABLE_CRYPTODISK="true"
-+GRUB_BTRFS_ENABLE_CRYPTODISK="true"

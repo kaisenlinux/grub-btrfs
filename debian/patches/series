@@ -1,4 +1,4 @@
-kaisen-config
-kaisen-snapshot-config
-kaisen-use-non-var-path-btrfsd-grub-regeneration
 kaisen-use-timeshift-as-default-software-and-move-btrfsd
+kaisen-snapshot-config
+kaisen-config
+kaisen-use-non-var-path-btrfsd-grub-regeneration

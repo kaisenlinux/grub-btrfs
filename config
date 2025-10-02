@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-GRUB_BTRFS_VERSION=4.13-yabsnap_info_support-2024-03-06T13:43:57+00:00
+GRUB_BTRFS_VERSION=4.12-master-2023-04-28T16:26:00+00:00
 
 # Disable grub-btrfs.
 # Default: "false"
@@ -49,14 +49,14 @@ GRUB_BTRFS_VERSION=4.13-yabsnap_info_support-2024-03-06T13:43:57+00:00
 # Default: ("")
 #GRUB_BTRFS_CUSTOM_MICROCODE=("custom-ucode.img" "custom-uc.img "custom_ucode.cpio")
 
-# Additional kernel command line parameters that should be passed to the kernel
+# Additonal kernel command line parameters that should be passed to the kernel
 # when booting a snapshot.
 # For dracut based distros this could be useful to pass "rd.live.overlay.overlayfs=1"
 # or "rd.live.overlay.readonly=1" to the Kernel for booting snapshots read only.
 # Default: ""
 #GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS="rd.live.overlay.overlayfs=1"
 
-# Comma separated mount options to be used when booting a snapshot.
+# Comma seperated mount options to be used when booting a snapshot.
 # They can be defined here as well as in the "/" line inside the respective snapshots'
 # "/etc/fstab" files.  Mount options found in both places are combined, and this variable
 # takes priority over `fstab` entries.
@@ -74,15 +74,13 @@ GRUB_BTRFS_IGNORE_SPECIFIC_PATH=("@")
 # Any path starting with the specified string will be ignored.
 # e.g : if `prefix path` = @, all snapshots beginning with "@/..." will be ignored.
 # Default: ("var/lib/docker" "@var/lib/docker" "@/var/lib/docker")
-GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/docker" "@var/lib/docker" "@/var/lib/docker" "var/lib/containers" "@var/lib/containers" "@/var/lib/containers")
+GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/docker" "@var/lib/docker" "@/var/lib/docker")
 
 # Ignore specific type/tag of snapshot during run "grub-mkconfig".
 # For snapper:
 # Type = single, pre, post.
 # For Timeshift:
 # Tag = boot, ondemand, hourly, daily, weekly, monthly.
-# For yabsnap:
-# Trigger = S, I, U.
 # Default: ("")
 #GRUB_BTRFS_IGNORE_SNAPSHOT_TYPE=("")
 
@@ -109,14 +107,14 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/docker" "@var/lib/docker" "@/var/lib/doc
 
 # Location where grub-btrfs.cfg should be saved.
 # Some distributions (like OpenSuSE) store those files at the snapshot directory
-# instead of boot. Be aware that this directory must be available for grub during
+# instead of boot. Be aware that this direcory must be available for grub during
 # startup of the system.
 # Default: $GRUB_BTRFS_GRUB_DIRNAME
 #GRUB_BTRFS_GBTRFS_DIRNAME="/boot/grub"
 
 # Location of the directory where Grub searches for the grub-btrfs.cfg file.
 # Some distributions (like OpenSuSE) store those file at the snapshot directory
-# instead of boot. Be aware that this directory must be available for grub during
+# instead of boot. Be aware that this direcory must be available for grub during
 # startup of the system.
 # Default: "\${prefix}" # This is a grub variable that resolves to where grub is
 # installed. (like /boot/grub, /boot/efi/grub)
@@ -158,7 +156,3 @@ GRUB_BTRFS_IGNORE_PREFIX_PATH=("var/lib/docker" "@var/lib/docker" "@/var/lib/doc
 # doesn't work if GRUB_BTRFS_PROTECTION_AUTHORIZED_USERS isn't empty
 # Default: "false"
 #GRUB_BTRFS_DISABLE_PROTECTION_SUBMENU="true"
-
-# Enable booting from snapshots stored on LUKS encrypted devices
-# Default: "false"
-#GRUB_BTRFS_ENABLE_CRYPTODISK="true"
