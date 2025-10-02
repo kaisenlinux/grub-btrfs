@@ -44,13 +44,11 @@ install:
 	@cp manpages/grub-btrfs.8.man ${TEMP_DIR}/grub-btrfs.8
 	@if test "$(INSTALL_DOCS)" = true; then \
 		echo "Installing manpages..."; \
-		bzip2 ${TEMP_DIR}/grub-btrfs.8; \
-		install -Dm644 -t "${MAN_DIR}/man8" "${TEMP_DIR}/grub-btrfs.8.bz2"; \
+		install -Dm644 -t "${MAN_DIR}/man8" "${TEMP_DIR}/grub-btrfs.8"; \
 	fi
 	@cp manpages/grub-btrfsd.8.man ${TEMP_DIR}/grub-btrfsd.8
 	@if test "$(INSTALL_DOCS)" = true; then \
-		bzip2 ${TEMP_DIR}/grub-btrfsd.8; \
-		install -Dm644 -t "${MAN_DIR}/man8" "${TEMP_DIR}/grub-btrfsd.8.bz2"; \
+		install -Dm644 -t "${MAN_DIR}/man8" "${TEMP_DIR}/grub-btrfsd.8"; \
 	fi
 	@install -Dm755 -t "$(DESTDIR)/etc/grub.d/" 41_snapshots-btrfs
 	@install -Dm644 -t "$(DESTDIR)/etc/default/grub-btrfs/" config
@@ -147,7 +145,7 @@ help:
 	@echo "  BOOT_DIR_FEDORA     | path | boot data location (Fedora, RHEL, CentOS, Rocky...)   | '/boot/grub2'"
 	@echo "  SHARE_DIR           | path | shared data location                                  | '\$$(DESTDIR)\$$(PREFIX)/share'"
 	@echo "  LIB_DIR             | path | system libraries location                             | '\$$(DESTDIR)\$$(PREFIX)/lib'"
-	@echo "  PKGNAME             | name | name of the ditributed package                        | 'grub-btrfs'"
+	@echo "  PKGNAME             | name | name of the distributed package                       | 'grub-btrfs'"
 	@echo "  INITCPIO            | bool | include mkinitcpio hook                               | false"
 	@echo "  SYSTEMD             | bool | include unit files                                    | true"
 	@echo "  OPENRC              | bool | include OpenRc daemon                                 | false"
