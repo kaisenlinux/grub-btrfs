@@ -1,3 +1,9 @@
+grub-btrfs (4.13-10kaisen) kaisen-packages; urgency=medium
+
+  * Exclude cdrom0
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Thu, 02 Oct 2025 11:59:48 +0200
+
 grub-btrfs (4.13-9kaisen) kaisen-packages; urgency=medium
 
   * Update the kaisen-config patch
